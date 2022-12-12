@@ -20,14 +20,18 @@ async function loadRandomMichis() {
     else {
         const img1 = document.getElementById('img1');
         const img2 = document.getElementById('img2');
+        const img3 = document.getElementById('img3');
         const btn1 = document.getElementById('btn1');
         const btn2 = document.getElementById('btn2');
+        const btn3 = document.getElementById('btn3');
     
         img1.src = data[0].url;
         img2.src = data[1].url;
+        img3.src = data[2].url;
     
         btn1.onclick = () => saveFavoriteMichi(data[0].id);
         btn2.onclick = () => saveFavoriteMichi(data[1].id);
+        btn3.onclick = () => saveFavoriteMichi(data[2].id);
     }
 
 
@@ -54,13 +58,16 @@ async function loadFavoriteMichis(id) {
     else {
         
         const section = document.getElementById('favoritesMichis');
+        const div = document.createElement('div');
         section.innerHTML = '';
         const h2 = document.createElement('h2');
         const h2Text = document.createTextNode('MichisFavoritos');
         h2.appendChild(h2Text);
         section.appendChild(h2);
+        section.appendChild(div);
 
         data.forEach(michi => {
+            
             
             const article = document.createElement('article');
             const img = document.createElement('img');
@@ -75,10 +82,9 @@ async function loadFavoriteMichis(id) {
             button.onclick = () => deleteFavoriteMichi(michi.id);
 
             article.appendChild(img);
-            article.appendChild(button);
-            section.appendChild(article);
-
-            // michi.image.url
+            article.appendChild(button);    
+            div.appendChild(article);
+                    // michi.image.url
         });
     }
 }
@@ -141,3 +147,4 @@ loadFavoriteMichis();
 btn.onclick = loadRandomMichis;
 
 
+ 
